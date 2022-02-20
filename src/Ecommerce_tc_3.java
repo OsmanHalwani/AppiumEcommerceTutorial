@@ -2,6 +2,7 @@ import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -24,7 +25,7 @@ public class Ecommerce_tc_3 extends base {
 		
 		// Parent to child
 		driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.androidsample.generalstore:id/rvProductList\")).scrollIntoView(new UiSelector().textMatches(\"Jordan 6 Rings\").instance(0))");
-		int count = driver.findElementsById("com.androidsample.generalstore:id/productName").size();
+		int count = driver.findElementsById("com.androidsample.generalstore:id/productName").size();//gets number of objects with this ID on current screen
 		
 		for (int i = 0; i<count;i++) 
 		{	
@@ -39,6 +40,9 @@ public class Ecommerce_tc_3 extends base {
 			
 		}
 		driver.findElementById("com.androidsample.generalstore:id/appbar_btn_cart").click();
+		String lastpageText = driver.findElement(By.id("com.androidsample.generalstore:id/productName")).getText();
+		Assert.assertEquals("Jordan 6 Rings", lastpageText);
+		
 
 	}
 
